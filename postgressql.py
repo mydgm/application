@@ -184,7 +184,7 @@ def within_month():
    {early} and {tdy}"""
    
   new_qry = qry.format(early = earliest, tdy = today)
-  c.execute(new_qry)
-  result = c.fetchall()
+  curr.execute(new_qry)
+  result = curr.fetchall()
   for s in result:
    print(f"transaction_id{s[0]} account_id{s[1]} ammount{s[2]} created_at {s[3]} status{s[4]}")
