@@ -100,7 +100,7 @@ class Transaction(Base):
   created_at = Column(DateTime(),nullable = False, default = datetime.utcnow)
   status= "PENDING"
   def add_transaction(self):
-    if(data.status == 'DECLINED' or (data.status == 'ACCEPTED') or (data.status == 'PENDING') ):
+    if(self.status == 'DECLINED' or (self.status == 'ACCEPTED') or (self.status == 'PENDING') ):
         qry = """ INSERT INTO Transactions(transaction_id, account_id, ammount, created_at, status) VALUES
         ('{trans_id}','{acc_id}','{amt}', '{created}','{stat}')
         """
