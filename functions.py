@@ -7,6 +7,8 @@ def new_data(data):  #used to add transactions users or accounts
     if(data.status == 'DECLINED' or (data.status == 'ACCEPTED') or (data.status == 'PENDING') ):
       local_session.add(data)
       local_session.commit()
+    else:
+      print("Invalid status")
       
   else:
     local_session.add(data)
