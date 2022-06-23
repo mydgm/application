@@ -3,8 +3,14 @@ from datetime import datetime,date
 import os
 
 def new_data(data):  #used to add transactions users or accounts
-  local_session.add(data)
-  local_session.commit()
+  if((data.__tablename__ = 'Transaction')):
+    if(data.status == 'DECLINED' or (data.status == 'ACCEPTED') or (data.status == 'PENDING') ):
+      local_session.add(data)
+      local_session.commit()
+      
+  else:
+    local_session.add(data)
+    local_session.commit()
   
 def get_user_balance(username):
   person = local_session.query(User).filter(User.username == str(username)).first()
