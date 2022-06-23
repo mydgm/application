@@ -100,13 +100,16 @@ class Transaction(Base):
   created_at = Column(DateTime(),nullable = False, default = datetime.utcnow)
   status= "PENDING"
   def add_transaction(self):
-    qry = """ INSERT INTO Transactions(transaction_id, account_id, ammount, created_at, status) VALUES
-    ('{trans_id}','{acc_id}','{amt}', '{created}','{stat}')
-    """
-    new_qry = qry.format(trans_id = self.transaction_id ,acc_id = self.account_id, 
-      amt = self.ammount, created = self.created_at, stat = self.status)
-    print(new_qry)
-    c.execute(new_qry)
+    if(data.status == 'DECLINED' or (data.status == 'ACCEPTED') or (data.status == 'PENDING') ):
+        qry = """ INSERT INTO Transactions(transaction_id, account_id, ammount, created_at, status) VALUES
+        ('{trans_id}','{acc_id}','{amt}', '{created}','{stat}')
+        """
+        new_qry = qry.format(trans_id = self.transaction_id ,acc_id = self.account_id, 
+            amt = self.ammount, created = self.created_at, stat = self.status)
+        print(new_qry)
+        c.execute(new_qry)
+    else:
+        print("Transaction has an invalid status")
 
   def update_status(self, new_status):
     if (((new_status == 'DECLINED') or (new_status == 'ACCEPTED')) and (self.status == 'PENDING')):
