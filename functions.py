@@ -8,7 +8,7 @@ def new_data(data):  #used to add transactions users or accounts
       local_session.add(data)
       local_session.commit()
     else:
-      print("Invalid status")
+      print("Transaction has an invalid status")
       
   else:
     local_session.add(data)
